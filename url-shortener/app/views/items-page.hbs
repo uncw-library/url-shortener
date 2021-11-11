@@ -1,5 +1,25 @@
-<ul>
-{{#each previousItems as |item itemId|}}
-    <li>{{item.id}}  {{item.url}}  {{item.to}}  {{item.user}}</li>
-{{/each}}
-</ul>
+<div class="table-responsive">
+    <table class="table" style="width: auto;">
+        <thead class="table-light">
+            <tr>
+                <th scope="col">Url</th>
+                <th scope="col">Redirects To</th>
+                <th scope="col">Posted By</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each previousItems as |item itemId|}}        
+            <tr>
+                <td class="col-3 text-break"><a href="https://lib.uncw.edu/{{item.url}}">https://lib.uncw.edu/{{item.url}}</a></td>
+                <td class="col-6 text-break">{{item.to}}</td>
+                <td class="col-1">{{item.user}}</td>
+                <td class="container col-1">
+                    <div class="col">Column1</div>
+                    <div class="col">Column2</div>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
