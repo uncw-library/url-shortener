@@ -1,0 +1,50 @@
+version: '3.7'
+
+services:
+  forwarder:
+    build: ./url-forwarder
+    container_name: forwarder
+    image: libapps-admin.uncw.edu:8000/randall-dev/url-shortener/forwarder
+    ports:
+      - "3333:3000"
+    env_file: .env
+    volumes:
+      - ./url-forwarder/app:/usr/src/app/
+    networks:
+      - db_network
+    command: npm run dev
+    restart: always
+
+  shortener:
+    build: ./url-shortener
+    container_name: shortener
+    image: libapps-admin.uncw.edu:8000/randall-dev/url-shortener/shortener
+    ports:
+      - "3111:3000"
+    env_file: .env
+    volumes:
+      - ./url-shortener/app:/usr/src/app/
+    networks:
+      - db_network
+    command: npm run dev
+    restart: always
+
+  db:
+    image: postgres:10.2
+    container_name: db
+    env_file: .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db_autoimport:/docker-entrypoint-initdb.d/
+    networks:
+      - db_network
+    ports:
+      - 8020:5432
+    restart: always
+
+volumes:
+  postgres_data:
+
+networks:
+  db_network:
+    driver: bridge
