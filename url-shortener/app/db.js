@@ -3,7 +3,7 @@ const { Pool } = require('pg')
 const pool = new Pool({
   user: process.env.POSTGRES_USER,
   password: process.env.POSTGRES_PASSWORD,
-  database: 'url-shortener-api',
+  database: process.env.POSTGRES_DB,
   port: 5432,
   host: 'db',
   max: 1,

@@ -39,7 +39,7 @@ services:
     networks:
       - db_network
     ports:
-      - 8020:5432
+      - 3222:5432
     restart: always
 
 volumes:

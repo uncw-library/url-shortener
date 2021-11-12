@@ -1,14 +1,14 @@
 ## What the app does
 
-    There are two apps in this repo: url-forwarder & url-shortener.
+There are two apps in this repo: url-forwarder & url-shortener.
 
-    The first is a url forwarder.  In production, it receives a url addressed to https://lib.uncw.edu/????, then redirects it to either: 1) library.uncw.edu/????, or to 2) the url shortener value (if there is a match for ???? in the db).
+The first is a url forwarder.  In production, it receives a url addressed to https://lib.uncw.edu/????, then redirects it to either: 1) library.uncw.edu/????, or to 2) the url shortener value (if there is a match for ???? in the db).
 
-    The second app is the url shortener frontend.  It lets people add/remove/revise the shortener values used by the first app.
+The second app is the url shortener frontend.  It lets people add/remove/revise the shortener values used by the first app.
 
-    A postgres db is there to save the shortener values.
+A postgres db is there to save the shortener values.
 
-    Unfortunately, it couldn't be shrunk into one Express app because the two apps have different uses for the "/" path.  So, it stays two apps.
+Unfortunately, it couldn't be shrunk into one Express app because the two apps have different uses for the "/" path.  So, it stays two apps.
 
 
 ## Building a production image
@@ -34,14 +34,14 @@ Create a file at ./url-shortener-express/.env with contents:
 NODE_ENV=development
 POSTGRES_USER=CHANGEME
 POSTGRES_PASS=CHANGEME
-POSTGRES_DB=url-shortener-api
+POSTGRES_DB=urlshortener
 LDAP_PASS=CHANGEME
 LDAP_USER=CHANGEME
 ```
 
 then, `docker-compose up -d`
 
-  Connect to uncw VPN & see url-forwarder at localhost:3333 & url-shortener at localhost:3111
+  Connect to uncw VPN & see url-forwarder at localhost:3333 & url-shortener at localhost:3111 & postgres port at localhost:3222
 
   - `docker-compose down` to stop it
 
