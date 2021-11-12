@@ -1,3 +1,14 @@
+{{#if error}}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        <strong>Whoops...</strong> {{error.text}}
+      </div>        
+    </div>
+  </div>
+</div>
+{{/if}}
 <div class="table-responsive">
     <table class="table" style="width: auto;">
         <thead class="table-light">
@@ -11,12 +22,16 @@
         <tbody>
             {{#each previousItems as |item itemId|}}        
             <tr>
-                <td class="col-3 text-break"><a href="https://lib.uncw.edu/{{item.url}}">https://lib.uncw.edu/{{item.url}}</a></td>
-                <td class="col-6 text-break">{{item.to}}</td>
-                <td class="col-1">{{item.user}}</td>
+                <td class="col-3 text-break"><a href="https://lib.uncw.edu/{{item.slug}}">https://lib.uncw.edu/{{item.slug}}</a></td>
+                <td class="col-6 text-break"><a href="{{item.dest}}">{{item.dest}}</td>
+                <td class="col-1">{{item.username}}</td>
                 <td class="container col-1">
-                    <div class="col">Column1</div>
-                    <div class="col">Column2</div>
+                    <a href="/revise?id={{item.id}}">
+                        <img src="images/gear.svg" width="24" height="24" alt="Change a Shortcut" title="Change a Shortcut">
+                    </a>
+                    <a href="/delete?id={{item.id}}">
+                        <img src="images/x-circle.svg" width="24" height="24" alt="Delete a Shortcut" title="Delete a Shortcut">
+                    </a>
                 </td>
             </tr>
             {{/each}}

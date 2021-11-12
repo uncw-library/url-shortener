@@ -19,11 +19,11 @@ app.set('view engine', 'hbs')
 app.use(favicon(path.join(__dirname, 'public', 'images', 'seahawk.ico')))
 app.use(cookieParser())
 app.use(session({
-  keys: ['cookie-session-sierra', 'dockerisawesome-sierra', 'webwizards-sierra'],
+  keys: ['cookie-session-url-shortener', 'dockerisawesome-sierra', 'webwizards-sierra'],
   maxAge: 24 * 60 * 60 * 1000 // 24 hours
 }))
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, 'public')))
 
 passport.use(new LdapStrategy(opts))

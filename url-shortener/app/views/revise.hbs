@@ -1,0 +1,28 @@
+<div class="container">
+  {{#if error}}
+  <div class="row">
+    <div class="col">
+      <div class="alert alert-danger" role="alert">
+        <strong>Whoops...</strong> {{error.text}}
+      </div>        
+    </div>
+  </div>
+  {{/if}}
+  <form method="POST" action="/revise">
+    <input type="hidden" id="id" name="id" value="{{item.id}}">
+    <label for="shortened" class="form-label">Your shortened URL</label>
+    <div class="input-group mb-3">
+      <span class="input-group-text" id="basic-addon">https://lib.uncw.edu/</span>
+      <input type="text" class="form-control" id="shortened" aria-describedby="Shortened URL" name="shortened" placeholder="{{item.slug}}">
+    </div>
+    <label for="dest-url" class="form-label">The destination URL</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="dest-url" aria-describedby="Destination URL" name="destination" placeholder="{{item.dest}}">
+    </div>
+    <label for="username" class="form-label">Your name</label>
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" id="username" aria-describedby="Your name" name="username" placeholder="{{item.username}}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
