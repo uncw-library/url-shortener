@@ -10,6 +10,11 @@ const session = require('cookie-session')
 const hbs = require('hbs')
 
 const router = require('./routes/index.js')
+const authRoute = require('./routes/auth.js')
+const delRoute = require('./routes/delete.js')
+const createRoute = require('./routes/create.js')
+const reviseRoute = require('./routes/revise.js')
+
 const opts = require('./ldap')
 
 const app = express()
@@ -37,6 +42,11 @@ passport.deserializeUser(function (user, done) {
 })
 
 app.use('/', router)
+app.use('/auth/', authRoute)
+app.use('/delete/', delRoute)
+app.use('/create/', createRoute)
+app.use('/revise/', reviseRoute)
+
 
 /*
  if the request doesn't match a route above,
