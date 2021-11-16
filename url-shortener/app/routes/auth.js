@@ -10,8 +10,9 @@ const router = express.Router()
 */
 
 router.get('/login', (req, res, next) => {
+  const error = req.query.error || null
   const payload = {
-    error: req.query.error
+    error: error
   }
   res.render('login', payload)
 })
