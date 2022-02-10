@@ -11,6 +11,7 @@ router.get('/', (req, res, next) => {
 router.get('/:path', async (req, res, next) => {
   // the table "urls" has rows:
   //  {id, slug, dest, username}
+  console.log('incoming path: ', req.params.path)
   const path = req.params.path
   const queryText = `
     SELECT * 
@@ -20,10 +21,12 @@ router.get('/:path', async (req, res, next) => {
   const response = await db.query(queryText, [path])
   const shortcircuit = `https://library.uncw.edu/${path}`
   if (!response.rows.length) {
+    console.log('shortcircuited to: ', shortcircuit)
     return res.redirect(shortcircuit)
   }
   const targetPath = response.rows[0].dest
   if (!targetPath.length) {
+    console.log('shortcircuited to: ', shortcircuit)
     return res.redirect(shortcircuit)
   }
   console.log(`redirecting to:  ${targetPath}`)
